@@ -22,9 +22,23 @@ This is free software and you are equally free to specify any amount of money yo
 
 ## Table of Contents
 
-BLAH! BLAH! BLAH! BLAH! BLAH! BLAH! BLAH! 
+   * [EXECUTE ON HOST](#execute-on-host)
+      + [Configure iptables](#configure-iptables)
+      + [Configure IP forwarding](#configure-ip-forwarding)
+      + [Install and configure dnsmasq](#install-and-configure-dnsmasq)
+      + [PLUS: Configure "dnsmasq" as a DHCP](#plus-configure-dnsmasq-as-a-dhcp)
+         - [Create dnsmasq-vboxnet0.service systemd service](#create-dnsmasq-vboxnet0service-systemd-service)
+         - [Configure dnsmasq-vboxnet0.service systemd service](#configure-dnsmasq-vboxnet0service-systemd-service)
+         - [Adjusting the AppArmor](#adjusting-the-apparmor)
+         - [Create dnsmasq_check_vboxnet0.sh to check the vboxnet0 interface status](#create-dnsmasq_check_vboxnet0sh-to-check-the-vboxnet0-interface-status)
+         - [Create the dnsmasq-check-vboxnet0.service systemd service](#create-the-dnsmasq-check-vboxnet0service-systemd-service)
+         - [Create the dnsmasq-check-vboxnet0.timer systemd timer](#create-the-dnsmasq-check-vboxnet0timer-systemd-timer)
+   * [EXTRA: EXECUTE ON GUEST](#extra-execute-on-guest)
+- [About](#about)
 
 ## EXECUTE ON HOST
+
+### Configure iptables
 
 Copy the iptables template configuration file...
 
@@ -38,13 +52,6 @@ Enable and start "iptables.service"...
 
 ```
 systemctl enable --now iptables.service
-```
-
-Enable IP forwarding...
-
-```
-sysctl -w net.ipv4.ip_forward=1
-printf "net.ipv4.ip_forward=1\n" >> /etc/sysctl.d/30-ipforward.conf
 ```
 
 Add the following iptables rules. This will forward packets through the host ("vboxnet0" host network interface) and to the internet...
@@ -64,13 +71,30 @@ iptables-save > /etc/iptables/iptables.rules
 systemctl restart iptables.service
 ```
 
-Enable and start "dnsmasq" in host...
+### Configure IP forwarding
+
+Enable IP forwarding...
+
+```
+sysctl -w net.ipv4.ip_forward=1
+printf "net.ipv4.ip_forward=1\n" >> /etc/sysctl.d/30-ipforward.conf
+```
+
+### Install and configure dnsmasq
+
+The "dnsmasq" is a small caching DNS proxy and DHCP/TFTP server.
+
+Install "dnsmasq"...
+
+```
+pamac install --no-confirm dnsmasq
+```
+
+Enable and start "dnsmasq"...
 
 ```
 systemctl enable --now dnsmasq.service
 ```
-
-**NOTE:** "dnsmasq" is a small caching DNS proxy and DHCP/TFTP server.
 
 ### PLUS: Configure "dnsmasq" as a DHCP
 
