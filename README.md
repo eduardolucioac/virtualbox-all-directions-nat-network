@@ -310,9 +310,7 @@ curl http://www.google.com
 
 VirtualBox - All Directions NAT Network 🄯 BSD-3-Clause  
 Eduardo Lúcio Amorim Costa  
-Brazil-DF  
+Brazil-DF 🇧🇷  
 https://www.linkedin.com/in/eduardo-software-livre/
-
-![Brazil](./images/brazil.png)
 
 ---------------------------------------------------------------------
