@@ -306,13 +306,9 @@ To test...
 curl http://www.google.com
 ```
 
----------------------------------------------------------------------
-
 # About
 
 VirtualBox - All Directions NAT Network 🄯 BSD-3-Clause  
 Eduardo Lúcio Amorim Costa  
 Brazil-DF 🇧🇷  
 https://www.linkedin.com/in/eduardo-software-livre/
-
----------------------------------------------------------------------
