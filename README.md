@@ -6,9 +6,11 @@ This is a complete guide to have the accesses "Guest-A <-> Host", "Guest-A <-> G
 
 In practice, what we will have is a NAT network with all accesses informed.
 
+Run all the commands as "root".
+
 **NOTE:** We use a Manjaro Linux (Arch Linux based) host as a template. You may need adjustments and changes to other distros.
 
-**IMPORTANT:** Run all the commands as "root".
+**IMPORTANT:** My life, my work and my passion is free software. Corrections, tweaks and improvements are very welcome (**pull requests** 😉)! Please consider giving us a ⭐, fork, support this project or even visit our professional profile (see [About](#about)). **Thanks!** 🥰
 
 ## Donations
 
